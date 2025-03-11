@@ -6,19 +6,19 @@ export async function seedChatroom() {
             title: "Stardew Valley",
             description: "Un salon chill pour les hardcore gamerz de Stardew Valley",
             members: [],
-            creator: "67d031702d2fc5f193185e67" // Ajoute le créateur ici
+            idUser: "67d031702d2fc5f193185e67" // Ajoute le créateur ici
         },
         {
             title: "The Legend of Zelda",
             description: "AAaaaaaaAAAAAhhhhhhhhhhhhh",
             members: [],
-            creator: "67d031702d2fc5f193185e67" 
+            idUser: "67d031702d2fc5f193185e67" 
         },
         {
             title: "Minecraft",
             description: "Huh?",
             members: [],
-            creator: "67d031702d2fc5f193185e67"
+            idUser: "67d031702d2fc5f193185e67"
         },
     );
     console.log("Salons créé!")
