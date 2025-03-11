@@ -1,6 +1,7 @@
 // importe le module Express et le Router
 import express, { Application } from "express";
 import cors from "cors";
+import { insertData } from "./documents/insertData";
 
 // const express = require('express');
 const app:Application = express();
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
     res.send("Bienvenue sur l'API Gamerz!");
   })
 
+insertData().catch(console.error)
 
 export default app;
 
