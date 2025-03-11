@@ -16,7 +16,5 @@ app.get('/', (req, res) => {
     res.send("Bienvenue sur l'API Gamerz!");
   })
 
-insertData().catch(console.error)
-
 export default app;
 
