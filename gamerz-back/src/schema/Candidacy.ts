@@ -8,7 +8,7 @@ const candidacySchema = new Schema({
     enum: ["pending", "cancelled", "validated"],
     default: "pending",
   },
-  user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  idUser: { type: Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 export const Candidacy = mongoose.model('Candidacy', candidacySchema)
