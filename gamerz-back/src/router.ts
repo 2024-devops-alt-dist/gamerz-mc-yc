@@ -1,5 +1,7 @@
 import {Router} from "express";
-import {registerController} from "./controller/registerController";
+import {authController} from "./controller/authController";
+import {registerCheck} from "./middlewares/authentification";
 export const router = Router()
 
-router.post('/register', registerController.createAccount)
+// @ts-ignore
+router.post('/register', registerCheck, authController.register)
