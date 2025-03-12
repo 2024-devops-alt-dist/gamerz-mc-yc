@@ -2,12 +2,13 @@ import { Link } from "react-router-dom"
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
+import { userRegister } from "../services/userService";
 
 
 const schema = z.object({
     email: z.string().email(),
     pseudo: z.string().min(1, "How should we call you ?"), 
-    candidacyText: z.string().min(50, "We would like to know more ... "),
+    motivation: z.string().min(50, "We would like to know more ... "),
     password: z.string()
       .min(8, "Password must have at least 8 characters")
       .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
@@ -29,16 +30,7 @@ function Register() {
     });
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        try {
-            await new Promise((resolve) => setTimeout(resolve, 1000))
-            throw new Error()
-            console.log(data)
-        } catch (error) {
-            setError("email", {
-                message: "This email is already taken"
-            })
-            console.log(error)
-        }
+        userRegister(data)
     }
 
     return (
@@ -68,9 +60,9 @@ function Register() {
 
                     <label className="fieldset-label text-base ml-9 text-left w-full">Tell us why you want to join :</label>
 
-                    {errors.candidacyText && <div className="text-error text-xs font-extralight italic"> {errors.candidacyText.message} </div>}
+                    {errors.motivation && <div className="text-error text-xs font-extralight italic"> {errors.motivation.message} </div>}
 
-                    <textarea {...register("candidacyText")} className="textarea w-md" />
+                    <textarea {...register("motivation")} className="textarea w-md" />
 
                     <button disabled={isSubmitting} type="submit" className="btn btn-soft btn-primary text-base mt-4">
                         {isSubmitting ? "Let him cook..." : "Submit"}

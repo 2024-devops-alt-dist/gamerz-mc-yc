@@ -14,6 +14,6 @@ const userSchema = new Schema({
     default: "pending",
   },
   
-});
+}, {timestamps: true});
 
 export const User = mongoose.model('User', userSchema)

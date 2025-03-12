@@ -2,8 +2,7 @@ export interface User {
     pseudo: string;
     email: string;
     password: string;
-    candidacyText: string;
-    idUser?: number;
+    motivation: string;
     isAccepted?: boolean;
     openToPlay?: boolean
 }
