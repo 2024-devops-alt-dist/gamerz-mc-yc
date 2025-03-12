@@ -1,15 +1,20 @@
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
+import Login from './components/Login'
+import Register from './components/Register'
+import MainLayout from './layout/MainLayout'
 
 function App() {
 
 
   return (
     <>
-      <div className='bg-red-500 p-5'>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
-      </div>
+      <Routes>
+        <Route path='/' element={<MainLayout />}>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register />}/>
+        </Route>
+      </Routes>
     </>
   )
 }

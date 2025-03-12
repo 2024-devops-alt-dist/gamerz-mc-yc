@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
 @plugin "daisyui/theme" {
   name: "dark";
   default: false;
@@ -31,8 +32,8 @@
   --radius-box: 0.5rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 1;
+  --border: 0.5px;
+  --depth: 0;
   --noise: 0;
 }
 
@@ -42,4 +43,5 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: "Poppins", sans-serif;
 }
