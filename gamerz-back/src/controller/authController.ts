@@ -1,6 +1,5 @@
 import {User} from "../schema/Users"
 import bcrypt from "bcrypt"
-import {connexion} from "../config/db";
 
 const saltRounds = 10;
 export const authController = {
@@ -10,6 +9,11 @@ export const authController = {
         try{
             // @ts-ignore
             const { pseudo, email, password, motivation } = req.body;
+            
+            if( !pseudo || !email || !password || !motivation) {
+                // @ts-ignore
+                res.status(400).send("Tous les champs doivent être rempli")
+            }
             
                     const hashedPassword = await bcrypt.hash(password, saltRounds);
 

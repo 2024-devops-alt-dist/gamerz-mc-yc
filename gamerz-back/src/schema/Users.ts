@@ -13,6 +13,7 @@ const userSchema = new Schema({
     enum: ["pending", "cancelled", "validated"],
     default: "pending",
   },
+  
 });
 
 export const User = mongoose.model('User', userSchema)
