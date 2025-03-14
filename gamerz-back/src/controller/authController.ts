@@ -2,8 +2,14 @@ import {User} from "../schema/Users"
 import bcrypt from "bcrypt"
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import { strict } from "assert";
+
+dotenv.config();
 
 const saltRounds = 10;
+const secretKey = process.env.JWT_SECRET;
+
 export const authController = {
     
     // Fonction s'enregistrer
@@ -71,8 +77,29 @@ export const authController = {
                 res.status(400).send("Email ou mot de passe incorrect")
             }
 
+            const userInfo = {
+                pseudo : user.pseudo,
+                isAccepted : user.isAccepted,
+                isAdmin : user.isAdmin
+            }
+
+            if (!secretKey) {
+                res.status(400).send("Erreur token");
+                return;
+            }
+            // On génère un token JWT en utilisant JWT.sign
+            const token = jwt.sign(userInfo, secretKey, { expiresIn: "1h" }); 
+
+            // On stocke le token dans les cookies du navigateur avec des options 
+            res.cookie("token", token, {
+                httpOnly: true,
+                maxAge: 24*60*60*1000,
+                secure: true,
+                sameSite: "strict"
+            })
+
             // Si tout est bon, on renvoie un message de bienvenue
-            res.status(200).json({ message: "Bienvenue", user: user });
+            res.status(200).json({ message: "Bienvenue", user: userInfo, token: token });
 
         } catch (error: any) {
             console.log(error.message);
