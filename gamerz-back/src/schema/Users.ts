@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  pseudo: String, 
-  email: String,
-  password: String,
-  isAccepted: Boolean,
-  openToPlay: Boolean,
+  pseudo: { type: String, required: true }, 
+  email: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  isAccepted: { type: Boolean, default: false },
+  openToPlay: { type: Boolean, default: false },
   motivation: { type: String, required: true },
   status: {
     type: String,
