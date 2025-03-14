@@ -1,7 +1,7 @@
 // importe le module Express et le Router
 import express, { Application } from "express";
 import cors from "cors";
-import {router} from "./routes/auth";
+import {authRouter} from "./routes/auth";
 import {connexion} from "./config/db";
 import bodyParser from "body-parser";
 
@@ -19,7 +19,7 @@ async function connexionApi(): Promise<void> {
 connexionApi()
 
 app.use(cors());
-app.use(router)
+app.use(authRouter)
 app.get('/', (req, res) => {
     // envoie une réponse 'Hello World!' au client
     res.send("Bienvenue sur l'API Gamerz!");

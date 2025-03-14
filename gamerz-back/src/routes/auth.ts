@@ -1,8 +1,8 @@
 import {Router} from "express";
 import {authController} from "../controller/authController";
 import {registerCheck} from "../middlewares/authentification";
-export const router = Router()
+export const authRouter = Router()
 
 
-router.post('/register', registerCheck, authController.register)
-router.post('/login', authController.login)
+authRouter.post('/register', registerCheck, authController.register)
+authRouter.post('/login', authController.login)
