@@ -1,7 +1,7 @@
 // importe le module Express et le Router
 import express, { Application } from "express";
 import cors from "cors";
-import {router} from "./router";
+import {router} from "./routes/auth";
 import {connexion} from "./config/db";
 
 // const express = require('express');
