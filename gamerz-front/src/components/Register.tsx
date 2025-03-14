@@ -8,7 +8,7 @@ import { userRegister } from "../services/userService";
 const schema = z.object({
     email: z.string().email(),
     pseudo: z.string().min(1, "How should we call you ?"), 
-    motivation: z.string().min(50, "We would like to know more ... "),
+    motivation: z.string().min(4, "We would like to know more ... "),
     password: z.string()
       .min(8, "Password must have at least 8 characters")
       .regex(/[A-Z]/, "Password must contain at least one uppercase letter")

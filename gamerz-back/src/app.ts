@@ -4,6 +4,7 @@ import cors from "cors";
 import {authRouter} from "./routes/auth";
 import {connexion} from "./config/db";
 import bodyParser from "body-parser";
+import { insertData } from "./documents/insertData";
 
 // const express = require('express');
 const app:Application = express();
@@ -17,6 +18,7 @@ async function connexionApi(): Promise<void> {
     await connexion
 }
 connexionApi()
+
 
 app.use(cors());
 app.use(authRouter)
