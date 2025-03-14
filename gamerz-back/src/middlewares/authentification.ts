@@ -10,6 +10,8 @@ export function registerCheck(req: Request, res: Response, next: NextFunction) {
         if (!user) {
             return next();
         }
+        //if user 
+        throw new Error("Utilisateur ayant déjà un compte")
     }
     userWithoutAccount()
 }
