@@ -26,17 +26,15 @@ export async function userRegister(data : User) {
     }
 }
 
-export async function login(data: User) {
+export async function login(data: any) {
     try {
-        const user = {
-            email : data.email,
-            password: data.password,
-        }
-        console.log(user)
-        await axios.post(`${API}/login`, user)
+        const {email, password } = data
+        console.log(email, password )
+       const response =  await axios.post(`${API}/login`, {email, password} )
+        return response.data
         
 } catch (error: any) {
         console.log(error.message)
-        throw new Error("Erreur lors de la connexion")
+        throw new Error("Erreur axios lors de la connexion")
 }
 }
