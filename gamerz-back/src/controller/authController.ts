@@ -94,7 +94,7 @@ export const authController = {
                 httpOnly: true,
                 maxAge: 24*60*60*1000,
                 secure: false,
-                sameSite: "strict"
+                sameSite: "none"
             })
 
             // Si tout est bon, on renvoie un message de bienvenue
