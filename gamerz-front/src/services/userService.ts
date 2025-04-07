@@ -25,3 +25,16 @@ export async function userRegister(data : User) {
         throw new Error("Erreur lors de l'inscription")
     }
 }
+
+export async function login(data: any) {
+    try {
+        const {email, password } = data
+        console.log(email, password )
+       const response =  await axios.post(`${API}/login`, {email, password}, { withCredentials: true })
+        return response.data
+        
+} catch (error: any) {
+        console.log(error.message)
+        throw new Error("Erreur axios lors de la connexion")
+}
+}

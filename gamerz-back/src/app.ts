@@ -20,7 +20,10 @@ async function connexionApi(): Promise<void> {
 connexionApi()
 
 
-app.use(cors());
+app.use(cors({
+    credentials: true, 
+    origin: 'http://localhost:5175'
+}));
 app.use(authRouter)
 app.get('/', (req, res) => {
     // envoie une réponse 'Hello World!' au client

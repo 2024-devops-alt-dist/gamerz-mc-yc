@@ -18,7 +18,7 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>
 
-function Register() {
+function Register(email: string, p: { message: string; required: boolean }) {
 
     const {
         register,
