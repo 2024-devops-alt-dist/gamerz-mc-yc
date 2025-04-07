@@ -30,7 +30,7 @@ export async function login(data: any) {
     try {
         const {email, password } = data
         console.log(email, password )
-       const response =  await axios.post(`${API}/login`, {email, password} )
+       const response =  await axios.post(`${API}/login`, {email, password}, { withCredentials: true })
         return response.data
         
 } catch (error: any) {
