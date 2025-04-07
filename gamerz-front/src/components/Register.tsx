@@ -23,6 +23,8 @@ function Register(email: string, p: { message: string; required: boolean }) {
 
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
+    const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
     const {
         register,
         handleSubmit,
