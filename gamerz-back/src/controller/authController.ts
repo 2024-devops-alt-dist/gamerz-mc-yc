@@ -17,7 +17,7 @@ export const authController = {
        
         try{
             // Récupération des données de l'utilisateur depuis le formulaire d'inscription
-            const { pseudo, email, password, motivation } = req.body;
+            const { pseudo, email, password, motivation, isAdmin } = req.body;
             
             // Si les champs ne sont pas remplis, on renvoie un message d'erreur
             if( !pseudo || !email || !password || !motivation) {
@@ -33,6 +33,7 @@ export const authController = {
                 pseudo,
                 email,
                 password: hashedPassword,
+                isAdmin,
                 motivation,
                 isAccepted: false,
                 openToPlay: false,
