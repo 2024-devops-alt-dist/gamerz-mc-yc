@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { userRegister } from "../services/userService";
 import { useState } from "react";
 
-
 const schema = z.object({
     email: z.string().email(),
     pseudo: z.string().min(1, "How should we call you ?"),
