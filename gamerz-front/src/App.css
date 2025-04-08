@@ -1,10 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-
 @plugin "daisyui/theme" {
   name: "dark";
-  /*default: false;*/
+  default: true;
   /*prefersdark: false;*/
   color-scheme: "dark";
   --color-base-100: oklch(25.33% 0.016 252.42);
@@ -36,7 +35,6 @@
   --depth: 0;
   --noise: 0;
 }
-
 
 #root {
   max-width: 1280px;

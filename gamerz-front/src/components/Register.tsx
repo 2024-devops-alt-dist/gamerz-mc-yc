@@ -4,7 +4,6 @@ import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userRegister } from "../services/userService";
 
-
 const schema = z.object({
     email: z.string().email(),
     pseudo: z.string().min(1, "How should we call you ?"), 
@@ -18,19 +17,18 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>
 
-function Register(email: string, p: { message: string; required: boolean }) {
+function Register() {
 
     const {
         register,
         handleSubmit,
-        setError,
         formState: { errors, isSubmitting }
     } = useForm<FormFields>({
         resolver: zodResolver(schema)
     });
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        userRegister(data)
+        await userRegister(data)
     }
 
     return (
