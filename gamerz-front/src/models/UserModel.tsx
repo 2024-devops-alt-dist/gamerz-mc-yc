@@ -3,6 +3,12 @@ export interface User {
     email: string;
     password: string;
     motivation: string;
+    isAdmin: boolean;
     isAccepted?: boolean;
-    openToPlay?: boolean
+    openToPlay?: boolean;
+}
+
+export interface Candidacy extends Omit<User, 'password'> {
+    status: string;
+    createdAt: Date;
 }

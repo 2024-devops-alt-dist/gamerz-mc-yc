@@ -17,7 +17,7 @@ export const authController = {
        
         try{
             // Récupération des données de l'utilisateur depuis le formulaire d'inscription
-            const { pseudo, email, password, motivation } = req.body;
+            const { pseudo, email, password, motivation, isAdmin } = req.body;
             
             // Si les champs ne sont pas remplis, on renvoie un message d'erreur
             if( !pseudo || !email || !password || !motivation) {
@@ -33,6 +33,7 @@ export const authController = {
                 pseudo,
                 email,
                 password: hashedPassword,
+                isAdmin,
                 motivation,
                 isAccepted: false,
                 openToPlay: false,
@@ -84,8 +85,7 @@ export const authController = {
             }
 
             if (!secretKey) {
-                res.status(400).send("Erreur token");
-                return;
+                throw new Error("Secret key non trouvée")
             }
             // On génère un token JWT en utilisant JWT.sign
             const token = jwt.sign(userInfo, secretKey, { expiresIn: "1h" }); 
@@ -94,12 +94,12 @@ export const authController = {
             res.cookie("token", token, {
                 httpOnly: true,
                 maxAge: 24*60*60*1000,
-                secure: true,
-                sameSite: "strict"
+                secure: false,
+                sameSite: "none"
             })
 
             // Si tout est bon, on renvoie un message de bienvenue
-            res.status(200).json({ message: "Bienvenue", user: userInfo, token: token });
+            res.status(200).json({ message: "Bienvenue", user: userInfo });
 
         } catch (error: any) {
             console.log(error.message);
