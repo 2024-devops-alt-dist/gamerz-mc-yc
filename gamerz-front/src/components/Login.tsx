@@ -25,7 +25,7 @@ function Login() {
             console.log(isSubmitting);
             const result = await login(data);
             console.log("Login success:", result);
-        } catch (e) {
+        } catch (e: any) {
             console.log(e.message)
         }
     }
@@ -33,21 +33,23 @@ function Login() {
     return (
         <>
             <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-                <form className="fieldset w-md bg-base-200 border border-base-300 p-4 rounded-box" method="POST" onSubmit={handleSubmit(onSubmit)}>
+                <form
+                    className="fieldset flex flex-col items-center w-lg bg-base-200 border border-base-300 p-4 rounded-box"
+                    method="POST" onSubmit={handleSubmit(onSubmit)}>
                     <legend className="fieldset-legend text-2xl">Login</legend>
 
-                    <label className="fieldset-label text-base">Email</label>
-                    <input  {...register('email')} type="email" className="input w-md" placeholder="Email" />
+                    <label className="fieldset-label text-base ml-9 text-left w-full">Email</label>
+                    <input  {...register('email')} type="email" className="input w-md" placeholder="Email"/>
                     {errors?.email &&
                         <div className="text-error text-xs font-extralight italic"> {errors?.email?.message} </div>}
 
-                    <label className="fieldset-label text-base">Password</label>
-                    <input {...register('password')} type="password" className="input w-md" placeholder="Password" />
+                    <label className="fieldset-label text-base ml-9 text-left w-full">Password</label>
+                    <input {...register('password')} type="password" className="input w-md" placeholder="Password"/>
                     {errors?.password &&
                         <div className="text-error text-xs font-extralight italic"> {errors?.password?.message} </div>}
-
                     <button className="btn btn-soft btn-primary text-base mt-4" type="submit"
-                            disabled={!isDirty || !isValid || isSubmitting}>Login</button>
+                            disabled={!isDirty || !isValid || isSubmitting}>Login
+                    </button>
                     {isSubmitting && (
                         <div role="status">
                             <svg
@@ -63,11 +65,12 @@ function Login() {
                 </form>
 
                 <p className="mt-10 text-center text-sm/6 text-gray-500">
-                    Not a member? 
-                    <Link to="/register" className="font-semibold text-primary hover:text-indigo-300 hover:transition"> Register here! </Link>
+                    Not a member?
+                    <Link to="/register"
+                          className="font-semibold text-primary hover:text-indigo-300 hover:transition"> Register
+                        here! </Link>
                 </p>
             </div>
-
         </>
     )
 }

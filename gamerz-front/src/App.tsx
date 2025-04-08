@@ -3,19 +3,21 @@ import './App.css'
 import Login from './components/Login'
 import Register from './components/Register'
 import MainLayout from './layout/MainLayout'
+import ChatroomModal from "./components/ChatroomModal.tsx";
 
 function App() {
 
 
   return (
-    <>
-      <Routes>
-        <Route path='/' element={<MainLayout />}>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register />}/>
-        </Route>
-      </Routes>
-    </>
+      <>
+          <Routes>
+              <Route path='/' element={<MainLayout/>}>
+                  <Route path='/login' element={<Login/>}/>
+                  <Route path='/register' element={<Register/>}/>
+                  <Route path='/chatroom' element={<ChatroomModal/>}/>
+              </Route>
+          </Routes>
+      </>
   )
 }
 
