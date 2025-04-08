@@ -1,8 +1,7 @@
 import axios from "axios";
-import { redirect } from "react-router-dom";
 import { User } from "../models/UserModel";
 
-const API = "http://localhost:3000";
+const API = import.meta.env.VITE_API_URL;
 
 
 export async function userRegister(data : User) {
@@ -19,13 +18,13 @@ export async function userRegister(data : User) {
             user
         )
         console.log(user)
-        redirect("/login")
     } catch (err) {
         console.error(err)
         throw new Error("Erreur lors de l'inscription")
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function login(data: any) {
     try {
         const {email, password } = data
@@ -33,6 +32,7 @@ export async function login(data: any) {
        const response =  await axios.post(`${API}/login`, {email, password}, { withCredentials: true })
         return response.data
         
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 } catch (error: any) {
         console.log(error.message)
         throw new Error("Erreur axios lors de la connexion")
