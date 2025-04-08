@@ -32,7 +32,7 @@ function Register() {
     });
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        userRegister(data);
+        await userRegister({...data, isAdmin: false});
         setIsDisabled(true);
         setTimeout(() => {
             window.location.href = "/login";
@@ -86,7 +86,7 @@ function Register() {
 
                 <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
                     <div className="flex flex-col items-center w-lg bg-base-200 border border-base-300 p-4 rounded-box">
-                        <h3 className="text-lg text-center w-full">You have been successfully registered !</h3>
+                        <h4 className="text-lg text-center w-full">You have been successfully registered !</h4>
                         <p className="mt-4 text-center text-sm/6 text-gray-500">You are going to be redirected</p>
                     </div>
                 </div>
