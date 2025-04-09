@@ -14,7 +14,14 @@ const userSchema = new Schema({
     enum: ["pending", "cancelled", "validated"],
     default: "pending",
   },
-  
-}, {timestamps: true});
+}, { 
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
+});
+
+userSchema.virtual('id').get(function() {
+  return this._id.toHexString();
+});
 
 export const User = mongoose.model('User', userSchema)

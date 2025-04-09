@@ -9,6 +9,7 @@ export interface User {
 }
 
 export interface Candidacy extends Omit<User, 'password'> {
+    id: string;
     status: string;
     createdAt: Date;
 }
