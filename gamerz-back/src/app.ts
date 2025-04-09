@@ -6,6 +6,7 @@ import {connexion} from "./config/db";
 import bodyParser from "body-parser";
 import { insertData } from "./documents/insertData";
 import { userRouter } from "./routes/user";
+import {chatRoomRouter} from "./routes/chatroomRouter";
 
 // const express = require('express');
 const app:Application = express();
@@ -26,9 +27,10 @@ app.use(cors({
     origin: 'http://localhost:5175'
 }));
 
-app.use(authRouter)
-app.use(userRouter)
-
+app.use(
+    authRouter, 
+    chatRoomRouter,
+    userRouter)
 app.get('/', (req, res) => {
     // envoie une réponse 'Hello World!' au client
     res.send("Bienvenue sur l'API Gamerz!");

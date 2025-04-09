@@ -25,7 +25,7 @@ function Login() {
             console.log(isSubmitting);
             const result = await login(data);
             console.log("Login success:", result);
-        } catch (e) {
+        } catch (e: any) {
             console.log(e.message)
         }
     }
@@ -45,7 +45,6 @@ function Login() {
                     <input {...register('password')} type="password" className="input w-md" placeholder="Password" />
                     {errors?.password &&
                         <div className="text-error text-xs font-extralight italic"> {errors?.password?.message} </div>}
-
                     <button className="btn btn-soft btn-primary text-base mt-4" type="submit"
                         disabled={!isDirty || !isValid || isSubmitting}>Login</button>
                     {isSubmitting && (
@@ -67,7 +66,6 @@ function Login() {
                     <Link to="/register" className="font-semibold text-primary hover:text-indigo-300 hover:transition"> Register here! </Link>
                 </p>
             </div>
-
         </>
     )
 }

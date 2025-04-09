@@ -12,8 +12,7 @@ export async function userRegister(data : User) {
             password: data.password,
             motivation: data.motivation
         }
-    
-        console.log("hello")
+        
         await axios.post(`${API}/register`,
             user
         )
