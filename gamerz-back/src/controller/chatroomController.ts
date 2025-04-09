@@ -24,11 +24,23 @@ export const chatroomController  = {
             // @ts-ignore
             res.status(200).json({message: "New Chatroom", newChatroom: newChatroom})
         } catch (e: any) {
-            console.log("coucou")
             console.log(e.message)
             
             // @ts-ignore
             res.status(500).send(e.message)
+        }
+    },
+    
+    read : async (req: Request, res: Response): Promise<void> => {
+        try {
+            const chatrooms = await Chatroom.find({})
+            console.log(chatrooms)
+            // @ts-ignore
+            res.status(200).json({message: "Chatrooms", chatrooms: chatrooms})
+            
+        } catch (e: any) {
+            console.log(e.message)
+            throw new Error("Appel à l'API à échoué")
         }
     }
 }

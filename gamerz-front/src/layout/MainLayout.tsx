@@ -13,7 +13,7 @@ function MainLayout() {
                     </div>
                 </header>
 
-                <main data-theme="dark" className="max-w-[1280px] w-full mx-auto flex items-center justify-center">
+                <main data-theme="dark" className="w-full flex items-center justify-center">
                     <Outlet />
                 </main>
         </>

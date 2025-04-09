@@ -5,6 +5,7 @@ import Register from './components/Register'
 import MainLayout from './layout/MainLayout'
 import CandidaciesTable from './components/CandidaciesTable'
 import ChatroomModal from "./components/ChatroomModal.tsx";
+import Chatroom from "./components/Chatroom.tsx";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                   <Route path='/register' element={<Register/>}/>
                   <Route path='/candidacies' element={<CandidaciesTable />}/>
                   <Route path='/chatroom' element={<ChatroomModal/>}/>
+                  <Route path='/chatrooms' element={<Chatroom/>}/>
               </Route>
           </Routes>
       </>
