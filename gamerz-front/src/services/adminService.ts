@@ -3,18 +3,16 @@ import { useState, useEffect } from "react";
 
 const API = import.meta.env.VITE_API_URL;
 
-export function useGetCandidacies<T>(ENDPOINT_URL : string) {
-  // Retourne les données récupérées
+export function useGetCandidacies<T>(dependencies: unknown[] = []) {
   const [data, setData] = useState<T | null>(null);
-  // Gestion du chargement = booléen pour savoir si les données sont entrain d'être chargées ou non
   const [loading, setLoading] = useState<boolean>(true);
-  // Gestion des erreurs = Permettra d'afficher un message d'erreur
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: AxiosResponse = await axios.get<T>(API + ENDPOINT_URL);
+        const candidaciesEndpoint = API + "/candidacies";
+        const response: AxiosResponse = await axios.get<T>(candidaciesEndpoint);
         setData(response.data);
       } catch (err) {
         console.log(err);
@@ -25,7 +23,19 @@ export function useGetCandidacies<T>(ENDPOINT_URL : string) {
     };
 
     fetchData();
-  }, []);
+  }, dependencies);
 
   return { data, loading, error };
+}
+
+export async function updateUserStatus(userId: string, isAccepted: boolean, status: string) {
+  try {
+    const response =  await axios.put(`${API}/users/${userId}/status`, {isAccepted, status}, { withCredentials: true })
+    return response.data
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    console.log(error.message)
+    throw new Error("Erreur lors du changement de status de l'utilisateur")
+}
 }
