@@ -24,3 +24,12 @@ export const getAllChatrooms = async () => {
         
     }
 }
+
+export const getOneChatroom = async(id: any) => {
+    try {
+        const response = await axios.get(`${API}/chatrooms/${id}`)
+        return response.data
+    } catch(e: any) {
+        console.log(e.message)
+    }
+}

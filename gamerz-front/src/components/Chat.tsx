@@ -1,7 +1,25 @@
+import {useEffect, useState} from "react";
+import {getOneChatroom} from "../services/chatroomService.ts";
+import {useParams} from "react-router-dom";
+
 function Chat() {
     
+    const [chatroom, setChatroom] = useState({})
+    
+    const idChat = useParams()
+    
+    useEffect(() => {
+        const fetchChatroom = async () => {
+            const chatroomSelected = await getOneChatroom(idChat)
+            // @ts-ignore
+            setChatroom(chatroomSelected)
+            console.log(chatroom)
+        }
+        fetchChatroom()
+    }, []);
     return (
         <>
+            {/*{chatroom}*/}
             <div className="chat chat-start">
                 <div className="chat-image avatar">
                     <div className="w-10 rounded-full">

@@ -1,5 +1,9 @@
 import {Chatroom} from "../schema/Chatroom";
+import { Request, Response } from 'express';
 
+interface ChatroomParams {
+    id: any;
+}
 export const chatroomController  = {
     
     create : async (req: Request, res: Response): Promise<void> => {
@@ -42,5 +46,16 @@ export const chatroomController  = {
             console.log(e.message)
             throw new Error("Appel à l'API à échoué")
         }
-    }
+    },
+    
+  getById: async(req: Request, res: Response): Promise<void> => {
+        try {
+            const { id } = req.params
+            
+            const chatroom = await Chatroom.findById(id)
+            res.status(200).json({message: "chatroom", chatroom: chatroom})
+        } catch(e: any) {
+            console.log(e.message)
+        }
+  }
 }

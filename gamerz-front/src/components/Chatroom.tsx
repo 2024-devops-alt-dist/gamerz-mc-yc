@@ -1,13 +1,9 @@
 import {useEffect, useState} from "react";
 import {getAllChatrooms} from "../services/chatroomService.ts";
-import Chat from "./Chat.tsx";
+import {Link, Outlet} from "react-router-dom";
 
 function Chatroom() {
     const [chatrooms, setChatrooms] = useState([]);
-    
-    const joinChatroom = () => {
-        
-    }
 
     // @ts-ignore
     useEffect(() => {
@@ -15,7 +11,7 @@ function Chatroom() {
             try {
                 const data = await getAllChatrooms();
                 setChatrooms(data);
-                console.log(data); // Optionnel
+                console.log(data);
             } catch (error) {
                 console.error("Erreur lors de la récupération des chatrooms :", error);
             }
@@ -23,18 +19,18 @@ function Chatroom() {
 
         fetchChatrooms();
     }, []);
-    // @ts-ignore
+  
     return(
         <div className="w-full">
                 
-            <div className="flex border">
+            <div className="flex border bg-red">
             <aside className="w-1/4 h-screen overflow-y-auto">
 
                 <ul className="list bg-base-300 shadow-md">
 
                     {chatrooms.map((chatroom) => (
                             <>
-                                <li className="px-4 py-6 border-b border-r" key={chatroom.id}>
+                                <li className="px-4 py-6 border-b border-r" key={chatroom._id}>
 
                                     <div className="flex justify-between w-full items-center">
                                         <p className="text-left text-secondary text-lg uppercase font-bold">{chatroom.title}</p>
@@ -45,10 +41,10 @@ function Chatroom() {
                                         {chatroom.description}
                                     </p>
                                     <div className="flex justify-end mt-7">
-                                        <button
-                                            className="btn px-3 py-1 text-sm font-bold text-purple-400 border border-purple-600 bg-zinc-900 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_12px_#a855f7] transition duration-300"
-                                            onClick={joinChatroom}>Rejoindre
-                                        </button>
+                                        <Link to={`/chatrooms/${chatroom._id}`}
+                                              className="btn px-3 py-1 text-sm font-bold text-purple-400 border border-purple-600 bg-zinc-900 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_12px_#a855f7] transition duration-300"
+                                            >Rejoindre</Link>
+                                       
                                     </div>
                                 </li>
                             </>
@@ -57,14 +53,11 @@ function Chatroom() {
                 </ul>
             </aside>
 
-                <aside className="w-3/4 p-5 h-screen overflow-y-auto">
-                    {/*<p>*/}
-                    {/*    if(!pas de salon)*/}
-                    {/*    Vous devez faire parti du salon pour voir la conversation*/}
-                    {/*    sinon le loggez sur le dernier*/}
-                    {/*</p>*/}
-
-                   <Chat />
+            <aside className="w-3/4 p-5 h-screen overflow-y-auto">
+                    <p>
+                        Le logger sur le dernier
+                    </p>
+                <Outlet />
                 </aside>
             </div>
         </div>
