@@ -3,10 +3,9 @@ import express, { Application } from "express";
 import cors from "cors";
 import {authRouter} from "./routes/auth";
 import {connexion} from "./config/db";
-import bodyParser from "body-parser";
-import { insertData } from "./documents/insertData";
 import { userRouter } from "./routes/user";
 import {chatRoomRouter} from "./routes/chatroomRouter";
+import cookieParser from "cookie-parser";
 
 // const express = require('express');
 const app:Application = express();
@@ -14,6 +13,7 @@ const app:Application = express();
 // Body Parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 // connexion à l'api
 async function connexionApi(): Promise<void> {

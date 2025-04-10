@@ -79,6 +79,7 @@ export const authController = {
             }
 
             const userInfo = {
+                id : user.id,
                 pseudo : user.pseudo,
                 isAccepted : user.isAccepted,
                 isAdmin : user.isAdmin
