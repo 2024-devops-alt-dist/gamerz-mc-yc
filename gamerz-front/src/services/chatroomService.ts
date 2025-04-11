@@ -25,10 +25,24 @@ export const getAllChatrooms = async () => {
     }
 }
 
-export const getOneChatroom = async(id: any) => {
+export const getMessagesOfChatroom = async(id: any) => {
     try {
         const response = await axios.get(`${API}/chatrooms/${id}`)
+        return response.data.messages
+    } catch(e: any) {
+        console.log(e.message)
+    }
+}
+
+export const addMemberInChatroom = async (idChatroom: any, idMember: any)=> {
+    try {
+        const response = await axios.patch(`${API}/chatrooms/${idChatroom}`, {
+            id: idMember, 
+        });
+        console.log(response.data)
         return response.data
+        
+        
     } catch(e: any) {
         console.log(e.message)
     }
