@@ -6,3 +6,10 @@ export const chatRoomRouter = Router()
 
 // @ts-ignore
 chatRoomRouter.post('/new-chatroom', checkToken, isAdmin, chatroomController.create)
+
+// @ts-ignore
+// Ajouter middleware "checkAccess" pour isAccepted
+chatRoomRouter.get('/chatrooms', checkToken, chatroomController.read)
+// @ts-ignore
+// Ajouter middleware "checkAccess" pour isAccepted
+chatRoomRouter.get('/chatrooms/:id', checkToken, chatroomController.getById)
