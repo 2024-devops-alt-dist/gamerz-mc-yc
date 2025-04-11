@@ -7,21 +7,19 @@ import { userRouter } from "./routes/user";
 import {chatRoomRouter} from "./routes/chatroomRouter";
 import cookieParser from "cookie-parser";
 
-// const express = require('express');
 const app:Application = express();
 
-// Body Parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-// connexion à l'api
+// Connexion à l'api
 async function connexionApi(): Promise<void> {
     await connexion
 }
 connexionApi()
 
-
+// Config Cors prenant en compte les credentials
 app.use(cors({
     credentials: true, 
     origin: 'http://localhost:5175'
@@ -31,8 +29,8 @@ app.use(
     authRouter, 
     chatRoomRouter,
     userRouter)
+
 app.get('/', (req, res) => {
-    // envoie une réponse 'Hello World!' au client
     res.send("Bienvenue sur l'API Gamerz!");
   })
 
