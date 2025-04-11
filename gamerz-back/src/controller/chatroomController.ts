@@ -1,5 +1,7 @@
 import {Chatroom} from "../schema/Chatroom";
 import { Request, Response } from 'express';
+import {Message} from "../schema/Message";
+import mongoose from "mongoose";
 
 interface ChatroomParams {
     id: any;
@@ -48,14 +50,37 @@ export const chatroomController  = {
         }
     },
     
-  getById: async(req: Request, res: Response): Promise<void> => {
+  getMessages: async(req: Request, res: Response): Promise<void> => {
         try {
             const { id } = req.params
-            
-            const chatroom = await Chatroom.findById(id)
-            res.status(200).json({message: "chatroom", chatroom: chatroom})
+            const messages = await Message.find({
+                idChatroom: id
+            }).populate('idUser');
+            res.status(200).json({messages})
         } catch(e: any) {
             console.log(e.message)
+            throw new Error("Impossible de récupérer les messages avec l'API")
         }
-  }
+  }, 
+    
+    addMember: async(req: Request, res: Response): Promise<void> => {
+        try {
+            const { id } = req.params
+            const idMember = new mongoose.Types.ObjectId(req.body.id);
+
+            if (!mongoose.Types.ObjectId.isValid(idMember)) {
+                res.status(400).send({ error: 'Invalid member ID' });
+                return;
+            }
+            
+            const chatroom = await Chatroom.findById(id)
+
+            chatroom?.members.push(idMember);
+            await chatroom?.save();
+            
+            res.status(200).send({chatroom})
+        } catch (e: any) {
+            console.log(e.message)
+        }
+    }
 }
