@@ -95,8 +95,8 @@ export const authController = {
             res.cookie("token", token, {
                 httpOnly: true,
                 maxAge: 24*60*60*1000,
+                sameSite: false,
                 secure: false,
-                sameSite: "none"
             })
 
             // Si tout est bon, on renvoie un message de bienvenue

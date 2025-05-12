@@ -12,7 +12,9 @@ export function useGetCandidacies<T>(dependencies: unknown[] = []) {
     const fetchData = async () => {
       try {
         const candidaciesEndpoint = API + "/candidacies";
-        const response: AxiosResponse = await axios.get<T>(candidaciesEndpoint);
+        const response: AxiosResponse = await axios.get<T>(candidaciesEndpoint, {
+          withCredentials: true,
+        });
         setData(response.data);
       } catch (err) {
         console.log(err);
