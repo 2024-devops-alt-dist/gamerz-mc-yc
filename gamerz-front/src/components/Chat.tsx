@@ -2,11 +2,9 @@ import {useEffect, useState} from "react";
 import {getMessagesOfChatroom} from "../services/chatroomService.ts";
 import {useParams} from "react-router-dom";
 
-function Chat() {
-
+function Chat({id}: any) {
+    console.log(id)
     const [messages, setMessages] = useState([])
-
-    const {id} = useParams()
 
     useEffect(() => {
         const fetchChatroomMessages = async () => {

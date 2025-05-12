@@ -25,7 +25,7 @@ function SideBar({chatrooms, fetchChatrooms}: SideBarProps) {
             console.log(e.message)
         }
     }
-
+    
     return (
         <>
             <ul className="list bg-base-300 shadow-md">
