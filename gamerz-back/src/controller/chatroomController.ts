@@ -67,6 +67,7 @@ export const chatroomController  = {
         try {
             const { id } = req.params
             const idMember = new mongoose.Types.ObjectId(req.body.id);
+            console.log(idMember)
 
             if (!mongoose.Types.ObjectId.isValid(idMember)) {
                 res.status(400).send({ error: 'Invalid member ID' });

@@ -6,7 +6,8 @@ import {useParams} from "react-router-dom";
 
 function Chatroom() {
     const [chatrooms, setChatrooms] = useState([]);
-    const {idChatromm} = useParams()
+    const {idChatroom} = useParams()
+    console.log(idChatroom)
     const fetchChatrooms = async () => {
         try {
             const data = await getAllChatrooms();
@@ -29,8 +30,8 @@ function Chatroom() {
                 </aside>
 
                 <aside className="w-3/4 p-5 h-screen overflow-y-auto">
-                    { idChatromm ?
-                        <Chat id={idChatromm}/> : 
+                    { idChatroom ?
+                        <Chat id={idChatroom}/> : 
                         <p>Le logger sur le dernier</p>
                     }
                 </aside>

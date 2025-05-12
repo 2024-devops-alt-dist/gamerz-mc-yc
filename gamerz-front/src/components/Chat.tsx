@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {getMessagesOfChatroom} from "../services/chatroomService.ts";
-import {useParams} from "react-router-dom";
+import {Message} from "../models/Message.ts"
 
 function Chat({id}: any) {
     console.log(id)
@@ -17,8 +17,8 @@ function Chat({id}: any) {
     }, [id]);
     return (
         <>
-            {/*{messages && */}
-            {/*messages.map(() => (*/}
+            {messages ? 
+            messages.map((message: Message) => (
             <>
                 <div className="chat chat-start">
                     <div className="chat-image avatar">
@@ -29,10 +29,11 @@ function Chat({id}: any) {
                         </div>
                     </div>
                     <div className="chat-header">
+                        {message.idUser.pseudo}
                         Obi-Wan Kenobi = récupérer les firstname des users
                         <time className="text-xs opacity-50">12:45 = heure de l'envoie</time>
                     </div>
-                    <div className="chat-bubble">You were the Chosen One! = message</div>
+                    <div className="chat-bubble"> {message.message} You were the Chosen One! = message</div>
                     <div className="chat-footer opacity-50">Delivered = checker avec les sockets comment ca marche
                     </div>
                 </div>
@@ -52,8 +53,8 @@ function Chat({id}: any) {
                     <div className="chat-footer opacity-50">Seen at 12:46</div>
                 </div>
             </>
-            {/*    ))*/}
-            {/*}*/}
+            )): "loading"
+            }
         </>
     )
 }

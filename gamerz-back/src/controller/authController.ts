@@ -44,7 +44,6 @@ export const authController = {
                       
         } catch (e: any) {
             console.log(e.message)
-
             res.status(500).send(e.message)
         }
     },
