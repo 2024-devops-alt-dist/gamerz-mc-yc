@@ -9,11 +9,11 @@ chatRoomRouter.post('/new-chatroom', checkToken, isAdmin, chatroomController.cre
 
 // @ts-ignore
 // Ajouter middleware "checkAccess" pour isAccepted
-chatRoomRouter.get('/chatrooms', checkToken, chatroomController.read)
+chatRoomRouter.get('/chatrooms', chatroomController.read)
 
 // @ts-ignore
 // Ajouter middleware "checkAccess" pour isAccepted
-chatRoomRouter.get('/chatrooms/:id', checkToken, chatroomController.getMessages)
+chatRoomRouter.get('/chatrooms/:id', chatroomController.getMessages)
 
 // @ts-ignore
-chatRoomRouter.patch('/chatrooms/:id',checkToken, isAdmin, chatroomController.addMember)
+chatRoomRouter.patch('/chatrooms/:id', chatroomController.addMember)
