@@ -94,9 +94,7 @@ export const authController = {
             // On stocke le token dans les cookies du navigateur avec des options 
             res.cookie("token", token, {
                 httpOnly: true,
-                maxAge: 24*60*60*1000,
-                sameSite: false,
-                secure: false,
+                maxAge: 24*60*60*1000
             })
 
             // Si tout est bon, on renvoie un message de bienvenue

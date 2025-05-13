@@ -6,7 +6,7 @@ function Chatroom() {
     const [chatrooms, setChatrooms] = useState([]);
     const [newMember, setNewMember] = useState([]);
     
-    const addMember = async (idChatroom: any, idMember: any) => {
+    const addMember = async (idChatroom: string, idMember: string) => {
         try {
             const newMember = await addMemberInChatroom(idChatroom, idMember)
             console.log(newMember)
@@ -16,7 +16,7 @@ function Chatroom() {
             console.log(e.message)
         }
     }
-    // @ts-ignore
+
     useEffect(() => {
         const fetchChatrooms = async () => {
             try {
@@ -31,9 +31,7 @@ function Chatroom() {
 
         fetchChatrooms();
     }, []); 
-    
-    // @ts-ignore
-    // @ts-ignore
+
     return (
         <div className="w-full">
             <div className="flex border bg-red">
@@ -62,7 +60,7 @@ function Chatroom() {
                                     <div className="flex justify-end mt-7">
                                         <Link
                                             to={`/chatrooms/${chatroom._id}`}
-                                            className="btn px-3 py-1 text-sm font-bold text-purple-400 border border-purple-600 bg-zinc-900 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_12px_#a855f7] transition duration-300"
+                                            className="btn px-3 py-1 text-sm font-bold text-primary border border-primary bg-zinc-900 hover:bg-primary hover:text-white hover:shadow-[0_0_8px_#9696db66] transition duration-300"
                                         onClick={() => addMember(chatroom._id, chatroom.idUser)}>
                                             Rejoindre
                                         </Link>

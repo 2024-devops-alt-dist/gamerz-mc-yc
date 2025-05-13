@@ -13,7 +13,7 @@ export function useGetCandidacies<T>(dependencies: unknown[] = []) {
       try {
         const candidaciesEndpoint = API + "/candidacies";
         const response: AxiosResponse = await axios.get<T>(candidaciesEndpoint, {
-          withCredentials: true,
+          withCredentials: true
         });
         setData(response.data);
       } catch (err) {
