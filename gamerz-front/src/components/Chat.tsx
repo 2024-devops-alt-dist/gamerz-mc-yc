@@ -66,7 +66,7 @@ function Chat() {
                         </div>
                     </div>
                     <div className="chat-header">
-                        {message.idUser.pseudo}
+                        {message.idUser?.pseudo}
                         Obi-Wan Kenobi = récupérer les firstname des users
                         <time className="text-xs opacity-50">12:45 = heure de l'envoie</time>
                     </div>
