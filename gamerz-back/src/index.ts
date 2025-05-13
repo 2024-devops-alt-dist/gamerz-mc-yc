@@ -6,8 +6,8 @@ const server = createServer(app)
 const io = new Server(server, {
   // CORS pour les requêtes WebSocket
   cors: {
-    origin: "http://localhost:5175",
-    methods: ["GET", "POST"],
+    origin: "https://gamerz-mc-yc.vercel.app",
+    methods: ["GET", "POST", "PATCH"],
     credentials: true,
   }
 });
