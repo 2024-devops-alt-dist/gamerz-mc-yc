@@ -3,7 +3,14 @@ import { createServer } from 'node:http';
 import { Server } from 'socket.io';
 
 const server = createServer(app)
-const io = new Server(server);
+const io = new Server(server, {
+  // CORS pour les requêtes WebSocket
+  cors: {
+    origin: "http://localhost:5175",
+    methods: ["GET", "POST"],
+    credentials: true,
+  }
+});
 
 // on utilisera le port 3000 pour accéder au serveur
 const port = 3000;
@@ -12,7 +19,10 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('message', (msg) => {
-    console.log('Message reçu :', msg);
+    socket.broadcast.emit('message', msg);
+
+    // Ici, on peut ajouter la logique pour stocker le message dans la base de données
+    
   });
 
   socket.on('disconnect', () => {

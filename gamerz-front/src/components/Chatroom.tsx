@@ -16,7 +16,7 @@ function Chatroom() {
             console.log(e.message)
         }
     }
-    // @ts-ignore
+
     useEffect(() => {
         const fetchChatrooms = async () => {
             try {
