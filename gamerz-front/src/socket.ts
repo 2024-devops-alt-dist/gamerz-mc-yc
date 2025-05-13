@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
 
-const URL = 'http://localhost:3000';
+const URL = "https://gamerz-fv91.onrender.com/";
 
 export const socket = io(URL);

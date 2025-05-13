@@ -17,8 +17,8 @@ export async function userRegister(data : User) {
             user
         )
         console.log(user)
-    } catch (err) {
-        console.error(err)
+    } catch (error: any) {
+        console.log(error.message)
         throw new Error("Erreur lors de l'inscription")
     }
 }

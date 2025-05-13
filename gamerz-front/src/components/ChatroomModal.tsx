@@ -21,7 +21,7 @@ function ChatroomModal() {
             throw new Error("Impossible de récupérer les données du formulaire")
         }
     }
-    // @ts-ignore
+
     return (
         <>
             <Toaster position="top-right" />
@@ -37,12 +37,12 @@ function ChatroomModal() {
                         <label className="fieldset-label text-base text-left w-full my-3">Titre du salon</label>
                         <input {...register("title", {required: "ce champ est obligatoire"})} className="input w-md" placeholder="Pour les fans de Roblox" />
                         {errors.title && <div
-                            className="text-error text-xs font-extralight italic mt-2"> {errors.title.message} </div>}
+                            className="text-error text-xs font-extralight italic mt-2"> {typeof errors.title?.message === 'string' ? errors.title.message : ''} </div>}
                         
                         <label className="fieldset-label text-base text-left w-full my-3">Description</label>
                         <textarea {...register("description", {required: "ce champ est obligatoire"})} className="input w-md h-20" placeholder="The place to be pour la communauté"/>
                         {errors.description && <div
-                            className="text-error text-xs font-extralight italic mt-2"> {errors.description.message} </div>}
+                            className="text-error text-xs font-extralight italic mt-2"> { typeof errors.description?.message} </div>}
                         
                         <button className="btn btn-soft btn-primary text-base mt-6" type="submit">Création</button>
                     </form>

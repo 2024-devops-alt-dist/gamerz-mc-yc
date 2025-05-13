@@ -67,6 +67,7 @@ export const chatroomController  = {
         try {
             const { id } = req.params
             const idMember = new mongoose.Types.ObjectId(req.body.id);
+            console.log(idMember)
 
             if (!mongoose.Types.ObjectId.isValid(idMember)) {
                 res.status(400).send({ error: 'Invalid member ID' });
@@ -74,7 +75,14 @@ export const chatroomController  = {
             }
             
             const chatroom = await Chatroom.findById(id)
+            //some s'arrête dès qu'il trouve le match et renvoie un bool 
+            const isUserInChatroom: boolean | undefined = chatroom?.members.some(member => member.toString() === idMember.toString());
 
+            if (isUserInChatroom) {
+                res.status(400).send({ error: 'User already in chatroom' });
+                return;
+            }
+            
             chatroom?.members.push(idMember);
             await chatroom?.save();
             
