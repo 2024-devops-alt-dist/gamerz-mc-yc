@@ -27,7 +27,7 @@ export const getAllChatrooms = async () => {
 
 export const getMessagesOfChatroom = async(id: any) => {
     try {
-        const response = await axios.get(`${API}/chatrooms/${id}`)
+        const response = await axios.get(`${API}/chatrooms/${id}`, {withCredentials: true} )
         console.log(response.data.messages)
         return response.data.messages
     } catch(e: any) {
@@ -35,15 +35,15 @@ export const getMessagesOfChatroom = async(id: any) => {
     }
 }
 
-export const addMemberInChatroom = async (idChatroom: any, idMember: any)=> {
+export const addMemberInChatroom = async (idChatroom: string, idMember: string)=> {
     try {
         console.log(idMember)
+        console.log('idChatroom' + idChatroom)
         const response = await axios.patch(`${API}/chatrooms/${idChatroom}`, {
             id: idMember }, {withCredentials: true}
         );
         console.log(response.data)
         return response.data
-        
         
     } catch(e: any) {
         console.log(e.message)

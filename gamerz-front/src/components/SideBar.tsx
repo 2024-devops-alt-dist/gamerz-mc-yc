@@ -14,7 +14,8 @@ function SideBar({chatrooms, fetchChatrooms}: SideBarProps) {
   
     const pathname = location.pathname;
     const id = pathname.split("/")[2];
-    const addMember = async (idChatroom: any, idMember: any) => {
+    
+    const addMember = async (idChatroom: string, idMember: string) => {
         try {
             const newMember = await addMemberInChatroom(idChatroom, idMember)
             setNewMember(newMember)

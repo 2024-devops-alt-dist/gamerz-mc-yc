@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom";
 function Chatroom() {
     const [chatrooms, setChatrooms] = useState([]);
     const {idChatroom} = useParams()
-    console.log(idChatroom)
+    // console.log(idChatroom)
     const fetchChatrooms = async () => {
         try {
             const data = await getAllChatrooms();
