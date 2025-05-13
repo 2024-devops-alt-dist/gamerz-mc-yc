@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Message } from "../models/MessageModel";
 
-const API = "http://localhost:3000";
+const API = import.meta.env.VITE_API_URL;
 
 export const createMessage = async (messageData: Message) => {
     try {
