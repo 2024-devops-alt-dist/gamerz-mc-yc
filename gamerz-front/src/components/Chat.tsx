@@ -2,11 +2,13 @@ import {useEffect, useState} from "react";
 import {getMessagesOfChatroom} from "../services/chatroomService.ts";
 import {Message} from "../models/Message.ts"
 
-function Chat({id}: any) {
-    console.log(id)
-    const [messages, setMessages] = useState([])
+function Chat() {
+    
+    const id = location.pathname.split("/")[2];
+    const [messages, setMessages] = useState<Message[]>([])
 
     useEffect(() => {
+        if (!id) return;
         const fetchChatroomMessages = async () => {
             const messagesOfChatroom = await getMessagesOfChatroom(id)
             // @ts-ignore
@@ -15,9 +17,12 @@ function Chat({id}: any) {
         }
         fetchChatroomMessages()
     }, [id]);
+
+    if (!id) return <p>Pas de chatroom sélectionnée.</p>;
+    
     return (
         <>
-            {messages ? 
+            {messages.length > 0 ? (
             messages.map((message: Message) => (
             <>
                 <div className="chat chat-start">
@@ -53,7 +58,7 @@ function Chat({id}: any) {
                     <div className="chat-footer opacity-50">Seen at 12:46</div>
                 </div>
             </>
-            )): "loading"
+            ))): "Pas de messages pour le moment"
             }
         </>
     )

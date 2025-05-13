@@ -1,12 +1,11 @@
-import Chat from "./Chat.tsx";
 import SideBar from "./SideBar.tsx";
 import {useEffect, useState} from "react";
 import {getAllChatrooms} from "../services/chatroomService.ts";
-import {useParams} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 
 function Chatroom() {
     const [chatrooms, setChatrooms] = useState([]);
-    const {idChatroom} = useParams()
+    // const {idChatroom} = useParams()
     // console.log(idChatroom)
     const fetchChatrooms = async () => {
         try {
@@ -21,7 +20,7 @@ function Chatroom() {
     useEffect(() => {
         fetchChatrooms();
     }, []);
-    // @ts-ignore
+   
     return (
         <div className="w-full">
             <div className="flex border bg-red">
@@ -30,10 +29,7 @@ function Chatroom() {
                 </aside>
 
                 <aside className="w-3/4 p-5 h-screen overflow-y-auto">
-                    { idChatroom ?
-                        <Chat id={idChatroom}/> : 
-                        <p>Le logger sur le dernier</p>
-                    }
+                        <Outlet />
                 </aside>
             </div>
         </div>
