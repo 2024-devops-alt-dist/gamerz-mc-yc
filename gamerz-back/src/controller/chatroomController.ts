@@ -52,9 +52,9 @@ export const chatroomController  = {
     
   getMessages: async(req: Request, res: Response): Promise<void> => {
         try {
-            const { id } = req.params
+            const { chatroomId } = req.params
             const messages = await Message.find({
-                idChatroom: id
+                idChatroom: chatroomId
             }).populate('idUser');
             res.status(200).json({messages})
         } catch(e: any) {

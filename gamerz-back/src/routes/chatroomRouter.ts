@@ -6,6 +6,7 @@ export const chatRoomRouter = Router()
 
 // @ts-ignore
 chatRoomRouter.post('/new-chatroom', checkToken, isAdmin, chatroomController.create)
+
 // @ts-ignore
 chatRoomRouter.get('/chatrooms', checkToken, chatroomController.read)
 // @ts-ignore
