@@ -28,7 +28,7 @@ function Login() {
             console.log(isSubmitting);
             const result = await login(data);
             console.log("Login success:", result);
-            // Redirect to the dashboard or another page
+            navigate('/chatrooms')
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (e: any) {
             console.log(e.message)
