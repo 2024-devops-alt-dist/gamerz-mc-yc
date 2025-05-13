@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { getMessagesOfChatroom } from "../services/chatroomService.ts";
-import { useParams } from "react-router-dom";
 import { socket } from "../socket.ts";
-import { Message } from "../models/MessageModel.ts";
+import { Message } from "../models/Message.ts";
 import { createMessage } from "../services/messageService.ts";
 
 function Chat() {
 
     // Pour afficher les messages reçus
     const [messageList, setMessageList] = useState<Message[]>([])
-
+    console.log(messageList)
     // Récupère l'id de la chatroom
     // const { id } = useParams()
 
@@ -54,7 +53,7 @@ function Chat() {
     
     return (
         <>
-            {messageList && messageList ? (
+            {message && messageList ? (
                 messageList.map((message: Message) => (
             <>
                 <div className="chat chat-start">
@@ -66,7 +65,7 @@ function Chat() {
                         </div>
                     </div>
                     <div className="chat-header">
-                        {message.idUser?.pseudo}
+                        {/*{message._id}*/}
                         Obi-Wan Kenobi = récupérer les firstname des users
                         <time className="text-xs opacity-50">12:45 = heure de l'envoie</time>
                     </div>

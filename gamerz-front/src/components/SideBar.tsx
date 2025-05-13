@@ -10,6 +10,7 @@ interface SideBarProps {
 
 function SideBar({chatrooms, fetchChatrooms}: SideBarProps) {
     const [newMember, setNewMember] = useState([]);
+    console.log(newMember)
     const location = useLocation()
 
     const id = location.pathname.split("/")[2];
