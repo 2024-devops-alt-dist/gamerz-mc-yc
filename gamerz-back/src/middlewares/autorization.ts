@@ -18,7 +18,6 @@ const secretKey = process.env.JWT_SECRET;
 
 export function checkToken(req: Request, res: Response, next: NextFunction) {
     const token = req.cookies.token
-    console.log("token", token)
     if (!token) {
         res.status(401).send("Please, log in");
         return

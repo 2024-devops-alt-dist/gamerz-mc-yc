@@ -8,12 +8,7 @@ export const chatRoomRouter = Router()
 chatRoomRouter.post('/new-chatroom', checkToken, isAdmin, chatroomController.create)
 
 // @ts-ignore
-// Ajouter middleware "checkAccess" pour isAccepted
-chatRoomRouter.get('/chatrooms' , chatroomController.read)
-
+chatRoomRouter.get('/chatrooms', checkToken, chatroomController.read)
 // @ts-ignore
-// Ajouter middleware "checkAccess" pour isAccepted
-chatRoomRouter.get('/chatrooms/:id', chatroomController.getMessages)
-
-// @ts-ignore
-chatRoomRouter.patch('/chatrooms/:id', chatroomController.addMember)
+chatRoomRouter.get('/chatrooms/:id', checkToken, chatroomController.getMessages)
+chatRoomRouter.patch('/chatrooms/:id', checkToken, chatroomController.addMember)
