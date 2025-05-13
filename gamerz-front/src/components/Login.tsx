@@ -1,9 +1,8 @@
-import { Link, Router } from "react-router-dom"
+import {Link, useNavigate, Router} from "react-router-dom"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { login } from "../services/userService"
-import { useNavigate } from "react-router-dom";
 
 const loginSchema = z.object({
     email: z.string().email(),
@@ -25,11 +24,11 @@ function Login() {
 
     const onSubmit = async (data: FormData) => {
         try {
-            console.log(isSubmitting);
             const result = await login(data);
             console.log("Login success:", result);
-            navigate('/chatrooms')
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            if(result) {
+                navigate('/chatrooms')
+            }
         } catch (e: any) {
             console.log(e.message)
         }

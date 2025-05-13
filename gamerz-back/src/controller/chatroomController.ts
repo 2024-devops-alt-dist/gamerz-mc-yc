@@ -74,7 +74,14 @@ export const chatroomController  = {
             }
             
             const chatroom = await Chatroom.findById(id)
+            //some s'arrête dès qu'il trouve le match et renvoie un bool 
+            const isUserInChatroom: boolean | undefined = chatroom?.members.some(member => member.toString() === idMember.toString());
 
+            if (isUserInChatroom) {
+                res.status(400).send({ error: 'User already in chatroom' });
+                return;
+            }
+            
             chatroom?.members.push(idMember);
             await chatroom?.save();
             
