@@ -23,7 +23,7 @@ async function connexionApi(): Promise<void> {
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5175"
+    origin: "https://gamerz-mc-yc.vercel.app"
   })
 );
 
