@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -20,11 +20,14 @@ function Login() {
         resolver: zodResolver(loginSchema),
     });
 
+    const navigate = useNavigate()
     const onSubmit = async (data: FormData) => {
         try {
-            console.log(isSubmitting);
             const result = await login(data);
             console.log("Login success:", result);
+            if(result) {
+                navigate('/chatrooms')
+            }
         } catch (e: any) {
             console.log(e.message)
         }
