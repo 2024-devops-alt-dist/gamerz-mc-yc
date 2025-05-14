@@ -80,8 +80,8 @@ function SideBar({chatrooms, fetchChatrooms}: SideBarProps) {
                             key={chatroom._id}
                             className={`px-4 py-6 border-b border-r transition duration-300 rounded-md ${
                                 isActive(chatroom._id) ?
-                                    "bg-purple-800/40 border-purple-500 text-purple-200 shadow-[0_0_10px_#7e22ce]" :
-                                    "hover:bg-zinc-800"
+                                    "bg-base-100 border-primary text-secondary shadow-[0_0_10px_#605dff]" :
+                                    "hover:bg-base-300"
                             }`}
                         >
                             <div className="flex justify-between w-full items-center">
@@ -103,7 +103,7 @@ function SideBar({chatrooms, fetchChatrooms}: SideBarProps) {
                                     <NavLink
                                         to={`/chatrooms/${chatroom._id}`}
                                         className={({ isActive }) =>
-                                            `btn px-3 py-1 text-sm font-bold text-purple-400 border border-purple-600 bg-zinc-900 ${isActive ? 'bg-purple-800 text-purple-200' : 'hover:bg-purple-600 hover:text-white hover:shadow-[0_0_12px_#a855f7]'} transition duration-300`
+                                            `btn px-3 py-1 text-sm font-bold text-primary border-primary bg-zinc-900 ${isActive ? 'bg-primary text-primary-content' : 'hover:bg-primary hover:text-white hover:shadow-[0_0_12px_#605dff]'} transition duration-300`
                                         }
                                         onClick={() => addMember(chatroom._id, chatroom.idUser)}
                                     >
