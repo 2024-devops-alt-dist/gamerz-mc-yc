@@ -7,7 +7,7 @@ const io = new Server(server, {
   // CORS pour les requêtes WebSocket
   cors: {
     origin: "http://localhost:5175",
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   }
 });

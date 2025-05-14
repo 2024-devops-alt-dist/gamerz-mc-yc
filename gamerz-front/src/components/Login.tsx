@@ -1,8 +1,9 @@
-import {Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { login } from "../services/userService"
+import { useLogin } from "../context/useLogin";
 
 const loginSchema = z.object({
     email: z.string().email(),
@@ -12,6 +13,9 @@ const loginSchema = z.object({
 type FormData = z.infer<typeof loginSchema>;
 function Login() {
 
+    const { user, setUser } = useLogin();
+    const navigate = useNavigate();
+
     const {
         handleSubmit,
         register,
@@ -20,13 +24,24 @@ function Login() {
         resolver: zodResolver(loginSchema),
     });
 
-    const navigate = useNavigate();
+
 
     const onSubmit = async (data: FormData) => {
         try {
             const result = await login(data);
-            console.log("Login success:", result);
-            if(result) {
+            if (result) {
+
+                const { id, pseudo, isAdmin, isAccepted } = result.user;
+                setUser({
+                    isLoggedIn: true,
+                    userId: id,
+                    pseudo: pseudo,
+                    isAdmin: isAdmin,
+                    isAccepted: isAccepted
+                });
+                // localStorage.setItem("userId", userId);
+
+                console.log("Login success:", user);
                 navigate('/chatrooms')
             }
         } catch (e: any) {

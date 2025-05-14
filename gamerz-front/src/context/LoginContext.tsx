@@ -4,10 +4,9 @@ import { createContext, useState, ReactNode } from 'react';
 type UserInfo = {
     isLoggedIn: boolean;
     userId: string | null;
-    userName: string | null;
+    pseudo: string | null;
     isAdmin: boolean;
-    isAccepted: boolean;
-    openToPlay: boolean;
+    isAccepted: boolean
 };
 
 // Définit le type du contexte de connexion
@@ -21,10 +20,9 @@ type LoginContextType = {
 const defaultUserInfo: UserInfo = {
     isLoggedIn: false,
     userId: null,
-    userName: null,
+    pseudo: null,
     isAdmin: false,
-    isAccepted: false,
-    openToPlay: false
+    isAccepted: false
 }
 
 // Création du contexte de connexion avec une valeur par défaut
@@ -44,14 +42,5 @@ export const LoginProvider = ({ children }: { children: ReactNode }) => {
     );
 };
 
-// Exportation du contexte de connexion pour l'utiliser dans d'autres composants -- à mettre dans un fichier séparé
+export  { LoginContext };
 
-// export const useLogin = () => {
-//     const context = useContext(LoginContext);
-//     if (!context) {
-//         throw new Error('useLogin must be used within a LoginProvider');
-//     }
-//     return context;
-// };
-
-// export const useLogin = () => useContext(LoginContext);
